@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AndroidTextToSpeech</string>
+
+
+    <string-array name="country">
+
+        <item>UK</item>
+        <item>china</item>
+        <item>বাংলা</item>
+
+    </string-array>
+
+</resources>
