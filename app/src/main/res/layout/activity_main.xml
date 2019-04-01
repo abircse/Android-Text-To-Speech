@@ -15,23 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <TextView
-        android:text="Select Your Language"
-        android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_height="wrap_content" />
 
     <Spinner
         android:id="@+id/spineer"
         android:layout_width="match_parent"
         android:layout_height="40dp"/>
-
-    <Button
-        android:id="@+id/firedbutton"
-        android:text="Convert Text To Speech"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
 
 
 </LinearLayout>

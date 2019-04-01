@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
 
     private EditText speechBox;
-    private Button convertText;
     private TextToSpeech speech;
     private Spinner spinner;
     private ArrayAdapter<String> CountryAdapter;
@@ -31,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         setContentView(R.layout.activity_main);
 
         speechBox = findViewById(R.id.speechTextBox);
-        convertText = findViewById(R.id.firedbutton);
         spinner = findViewById(R.id.spineer);
         speech = new TextToSpeech(this, this);
 
@@ -40,14 +38,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         CountryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(CountryAdapter);
 
-        convertText.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onClick(View v) {
-
-                speakOut();
-            }
-        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -60,30 +50,32 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                     if (position == 0) {
+
+                        Toast.makeText(MainActivity.this, "Please Select Your Conutry", Toast.LENGTH_SHORT).show();
+                    }
+
+                    if (position == 1) {
                         int result = speech.setLanguage(Locale.US);
                         if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                             Toast.makeText(MainActivity.this, "This Language is not supported", Toast.LENGTH_SHORT).show();
                         } else {
-                            convertText.setEnabled(true);
                             speakOut();
                         }
                     }
-                    if (position == 1) {
+                    if (position == 2) {
                         int result = speech.setLanguage(Locale.CHINA);
                         if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                             Toast.makeText(MainActivity.this, "This Language is not supported", Toast.LENGTH_SHORT).show();
                         } else {
-                            convertText.setEnabled(true);
                             speakOut();
                         }
                     }
 
-                    if (position == 2) {
+                    if (position == 3) {
                         int result = speech.setLanguage(new Locale("bn_IN"));
                         if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                             Toast.makeText(MainActivity.this, "This Language is not supported", Toast.LENGTH_SHORT).show();
                         } else {
-                            convertText.setEnabled(true);
                             speakOut();
                         }
                     }
@@ -98,21 +90,13 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
             Toast.makeText(MainActivity.this, "Error in Text to Speech", Toast.LENGTH_SHORT).show();
 
         }
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void speakOut() {
 
-        String data = speechBox.getText().toString();
-        if (data.matches("")) {
-            Toast.makeText(getApplicationContext(), "Please Enter A Text First", Toast.LENGTH_SHORT).show();
-        } else {
-            CharSequence text = speechBox.getText();
-            speech.speak(text, TextToSpeech.QUEUE_FLUSH, null, "null");
-
-        }
-
+        CharSequence text = speechBox.getText();
+        speech.speak(text, TextToSpeech.QUEUE_FLUSH, null, "null");
     }
 
     @Override

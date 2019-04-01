@@ -4,6 +4,7 @@
 
     <string-array name="country">
 
+        <item>Select Your Country</item>
         <item>UK</item>
         <item>china</item>
         <item>বাংলা</item>
